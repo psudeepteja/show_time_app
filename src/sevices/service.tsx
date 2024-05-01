@@ -1,6 +1,6 @@
 import axios from "axios";
-
-export  async function getService(url: string) {
+interface Payload { cinemaId?: string; sessionId?: string; providerId?: string; screenOnTop?: number; freeSeating?: boolean; screenFormat?: string; moviecode?: string; config?: { socialDistancing: number; }; }
+export async function getService(url: string) {
   try {
     const res = await axios.get(url);
     return res?.data;
@@ -9,7 +9,7 @@ export  async function getService(url: string) {
   }
 }
 
-export  async function postService(url: string, payload) {
+export async function postService(url: string, payload: Payload) {
   try {
     const res = await axios.post(url, payload);
     return res?.data;
