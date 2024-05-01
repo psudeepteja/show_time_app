@@ -9,9 +9,9 @@ export  async function getService(url: string) {
   }
 }
 
-export  async function postService(url: string) {
+export  async function postService(url: string, payload) {
   try {
-    const res = await axios.post(url);
+    const res = await axios.post(url, payload);
     return res?.data;
   } catch (error) {
     console.log(error)

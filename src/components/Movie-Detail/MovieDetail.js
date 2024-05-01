@@ -31,14 +31,22 @@ export default function MovieDetail({ movieCodeData }, context) {
     return `${monthAbbreviation} ${day}`;
   };
 
-  const handleClick = (dateString) => {
+  const handleDateClick = (dateString) => {
     router.replace(`/${movies}/${fmtGrpId}/${dateString}`);
     setSelectDate(dateString);
   };
 
+  const handleShowClick = (session) => {
+    console.log("session", session)
+    const { fid, cid, sid, mid, pid, scrnFmt } = session
+    const ffid = fid.toLowerCase()
+    const mmid = mid.toLowerCase()
+    router.push(`/seatLayout/${ffid}.json?cid=${cid}&sid=${sid}&mid=${mmid}&pid=${pid}&scrnfmt=${scrnFmt}&freeseating=false&fromsessions=true&cityname=nellore&frmtid=${ffid}`)
+  }
+
   return (
     <div className="mx-8 2xl:mx-16">
-      {movieCodeData.meta.movies.map((movie) => (
+      {movieCodeData && movieCodeData?.meta?.movies?.map((movie) => (
         <div key={movie.id}>
           <div className="my-6">
             <img src={movie.cvrPath} alt={movie.name} />
@@ -58,23 +66,20 @@ export default function MovieDetail({ movieCodeData }, context) {
               <span>{movie.scrnFmt}</span>
             </div>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-4 overflow-x-auto">
             {movieCodeData.data.sessionDates.map((dateString, idx) => (
               <div
                 key={idx}
-                className={`border rounded-lg  p-2 mt-4 cursor-pointer ${
-                  selectDate === dateString ? "bg-orange-100 text-white" : ""
-                }`}
-                onClick={() => handleClick(dateString)}
+                className={`border rounded-lg text-center  p-2 mt-4 cursor-pointer ${selectDate === dateString ? "bg-orange-100 text-white" : ""
+                  }`}
+                onClick={() => handleDateClick(dateString)}
               >
                 {formatDate(dateString)}
               </div>
             ))}
           </div>
-          {/* Show Times section for each cinema */}
           <div className="mt-6">
-            {/* Iterate over cinemas */}
-            {movieCodeData.data.cinemasOrder.map((cinemaId) => (
+            {movieCodeData?.data?.cinemasOrder?.map((cinemaId) => (
               <div key={cinemaId} className="mt-4">
                 <h4 className="text-lg font-medium">
                   {
@@ -83,7 +88,6 @@ export default function MovieDetail({ movieCodeData }, context) {
                     ).name
                   }
                 </h4>
-                {/* Sort sessions by show time before rendering */}
                 <div className="grid gap-4 grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-8 justify-center items-center">
                   {movieCodeData.pageData.sessions[cinemaId] &&
                     movieCodeData.pageData.sessions[cinemaId]
@@ -93,21 +97,20 @@ export default function MovieDetail({ movieCodeData }, context) {
                       .map((session) => (
                         <div
                           key={session.sid}
-                          className="mt-3 cursor-not-allowed	"
+                          className="mt-3 cursor-pointer"
+                          onClick={() => { handleShowClick(session) }}
                         >
                           <div
-                            className={`w-full text-center  border rounded-lg ${
-                              session.avail === 0 && "text-gray-500"
-                            } ${
-                              session.avail > 50
+                            className={`w-full text-center  border rounded-lg ${session.avail === 0 && "text-gray-500"
+                              } ${session.avail > 50
                                 ? "text-green-100"
                                 : "text-red-600"
-                            } text-green-100 hover:bg-orange-100 hover:text-white inline-block px-2 py-2`}
+                              } text-green-100 hover:bg-orange-100 hover:text-white inline-block px-2 py-2`}
                           >
                             <div className="text-xs md:text-base font-semibold">
                               {convertToIST(session.showTime)}
                             </div>
-                            <div className=" text-xs">{session.audi}</div>
+                            <div className="text-xs">{session.audi}</div>
                           </div>
                           <div className="text-xs text-center mt-2">
                             {session.avail > 0 ? (
