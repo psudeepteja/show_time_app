@@ -1,17 +1,51 @@
 "use client"
 import React, { useState } from 'react';
 
-export default function SeatSelection({ seatSelectionData }) {
-    const [selectedSeats, setSelectedSeats] = useState([]);
+interface Seat {
+    GridSeatNum: string;
+    SeatStatus: '0' | '1'; // Assuming SeatStatus is a string with values '0' or '1'
+    gridRowId: string; // Add gridRowId property
+    PhyRowId: string;
+}
 
-    const handleSeatClick = (gridRowId, PhyRowId, gridSeatNum) => {
-        const seat = { gridRowId, PhyRowId, gridSeatNum };
+interface Row {
+    GridRowId: string;
+    PhyRowId: string;
+    objSeat: Seat[];
+}
+
+interface Area {
+    AreaCode: string;
+    AreaDesc: string;
+    objRow: Row[];
+}
+
+interface SeatLayoutData {
+    colAreas: {
+        objArea: Area[];
+    };
+}
+
+interface SeatSelectionProps {
+    seatSelectionData: {
+        seatLayout: SeatLayoutData;
+    } | null | undefined;
+}
+
+const SeatSelection: React.FC<SeatSelectionProps> = ({ seatSelectionData }) => {
+    const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
+
+    const handleSeatClick = (gridRowId: string, PhyRowId: string, GridSeatNum: string) => { // Change gridSeatNum to GridSeatNum
+        const seat: Seat = {
+            gridRowId, PhyRowId, GridSeatNum,
+            SeatStatus: '0'
+        }; // Correct property names
         const isSelected = selectedSeats.some(
             (selectedSeat) =>
-                selectedSeat.gridRowId === gridRowId && selectedSeat.gridSeatNum === gridSeatNum
+                selectedSeat.gridRowId === gridRowId && selectedSeat.GridSeatNum === GridSeatNum // Correct property names
         );
         if (isSelected) {
-            setSelectedSeats(selectedSeats.filter((seat) => !(seat.gridRowId === gridRowId && seat.gridSeatNum === gridSeatNum)));
+            setSelectedSeats(selectedSeats.filter((seat) => !(seat.gridRowId === gridRowId && seat.GridSeatNum === GridSeatNum)));
         } else {
             setSelectedSeats([...selectedSeats, seat]);
         }
@@ -36,7 +70,7 @@ export default function SeatSelection({ seatSelectionData }) {
                                                 className={`m-1 p-2 w-10 h-10 rounded-lg flex items-center justify-center ${selectedSeats.some(
                                                     (selectedSeat) =>
                                                         selectedSeat.gridRowId === row.GridRowId &&
-                                                        selectedSeat.gridSeatNum === seat.GridSeatNum
+                                                        selectedSeat.GridSeatNum === seat.GridSeatNum
                                                 ) && seat.SeatStatus === '0'
                                                     ? 'bg-orange-500 text-white'
                                                     : seat.SeatStatus === '1'
@@ -61,7 +95,7 @@ export default function SeatSelection({ seatSelectionData }) {
                     <ul className='flex gap-2'>
                         {selectedSeats.map((seat, index) => (
                             <li key={index} >
-                                {seat.PhyRowId}{seat.gridSeatNum}
+                                {seat.PhyRowId}{seat.GridSeatNum}
                             </li>
                         ))}
                     </ul>
@@ -71,3 +105,4 @@ export default function SeatSelection({ seatSelectionData }) {
     );
 }
 
+export default SeatSelection;
