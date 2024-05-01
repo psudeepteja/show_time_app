@@ -2,13 +2,13 @@
 // import { getService } from '@/sevices/service';
 import React from 'react'
 
-interface Context {
-  searchParams: {
-    cinemaId: string;
-  };
-}
+// interface Context {
+//   searchParams: {
+//     cinemaId: string;
+//   };
+// }
 
-export default async function CinemaDetails({ context }: { context: Context }) {
+export default async function CinemaDetails() {
   // console.log("context",context)
   // const {cinemaId}=context?.searchParams
   // const cinemaRes = await getService(endpoints.cinema + `cinemaId=${cinemaId}`);
