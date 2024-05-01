@@ -5,7 +5,8 @@ import Card from "@/components/Card/Card";
 import SwipeToSlide from "@/components/Slide Card/SlideCard";
 
 export default async function Home() {
-  const sliderRes = await postService(endpoints.slider);
+  const payload={}
+  const sliderRes = await postService(endpoints.slider, payload);
   const nowShowingRes = await getService(endpoints.nowShowing);
   const upComingRes = await getService(endpoints.upComing);
 
