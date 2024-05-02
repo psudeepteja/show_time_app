@@ -3,7 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function MovieDetail({ movieCodeData }, context) {
+export default function MovieDetail({ movieCodeData }) {
   const router = useRouter();
   console.log("++++++", movieCodeData);
   const params = useParams();
@@ -44,6 +44,10 @@ export default function MovieDetail({ movieCodeData }, context) {
     router.push(`/seatLayout/${ffid}.json?cid=${cid}&sid=${sid}&mid=${mmid}&pid=${pid}&scrnfmt=${scrnFmt}&freeseating=false&fromsessions=true&cityname=nellore&frmtid=${ffid}`)
   }
 
+  if (!movieCodeData) {
+    return <h1>OOPS, Currently no shows available</h1>
+  }
+
   return (
     <div className="mx-8 2xl:mx-16">
       {movieCodeData && movieCodeData?.meta?.movies?.map((movie) => (
@@ -58,7 +62,7 @@ export default function MovieDetail({ movieCodeData }, context) {
             <div className="flex gap-4 px-4">
               <span>{movie.censor}</span>
               <span>{movie.duration}m</span>
-              <div>
+              <div className="flex gap-2">
                 {movie.grn.map((genre, index) => (
                   <span key={index}>{genre}</span>
                 ))}

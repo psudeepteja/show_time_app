@@ -17,7 +17,8 @@ const config: Config = {
           "100":"#f5f5f5"
         },
         green:{
-          "100":"#4abd5d"
+          "100":"#4abd5d",
+          "200": "#21c179"
         }
       },
       backgroundImage: {
