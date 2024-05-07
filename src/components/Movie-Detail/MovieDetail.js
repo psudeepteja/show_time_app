@@ -1,18 +1,18 @@
 "use client";
 
 import { convertToIST, formatDate } from "@/utilits";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function MovieDetail({ movieCodeData }) {
+export default function MovieDetail({ movieCodeData, context }) {
   const router = useRouter();
-  console.log("++++++", movieCodeData);
-  const params = useParams();
-  const { movies, fmtGrpId, specificDate } = params;
-  const [selectDate, setSelectDate] = useState(specificDate);
+  const { frmtid, date } = context?.searchParams
+  const { movieDetails, city } = context?.params
+
+  const [selectDate, setSelectDate] = useState(date);
 
   const handleDateClick = (dateString) => {
-    router.replace(`/${movies}/${fmtGrpId}/${dateString}`);
+    router.replace(`/movies/nellore/${movieDetails}?frmtid=${frmtid}&date=${dateString}`)
     setSelectDate(dateString);
   };
 
