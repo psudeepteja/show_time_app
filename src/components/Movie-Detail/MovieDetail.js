@@ -89,7 +89,7 @@ export default function MovieDetail({ movieCodeData }) {
                               } ${session.avail > 50
                                 ? "text-green-100"
                                 : "text-red-600"
-                              } text-green-100 hover:bg-orange-100 hover:text-white inline-block px-2 py-2`}
+                              } text-green-100 hover:bg-orange-100 hover:text-white inline-block py-2`}
                           >
                             <div className="text-sm md:text-base font-semibold">
                               {convertToIST(session.showTime)}

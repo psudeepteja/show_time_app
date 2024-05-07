@@ -117,7 +117,7 @@ export default function CinemaDetails({ cinemaDetailsData, context }: Props) {
                   <React.Fragment key={idx} >
                     {movie?.id === session?.mid && (
                       <div onClick={() => { handleShowClick(session) }}>
-                        <div className={`w-full text-center  border rounded-lg ${session.avail === 0 ? "text-gray-500" : session.avail > 50 ? "text-green-100" : "text-red-600"} text-green-100 hover:bg-orange-100 hover:text-white inline-block px-2 py-2`}>
+                        <div className={`w-full text-center  border rounded-lg ${session.avail === 0 ? "text-gray-500" : session.avail > 50 ? "text-green-100" : "text-red-600"} text-green-100 hover:bg-orange-100 hover:text-white inline-block py-2`}>
                           <p className='text-sm md:text-base font-semibold'>{convertToIST(session.showTime)}</p>
                           <p className='text-xs'>{session.audi}</p>
                         </div>
