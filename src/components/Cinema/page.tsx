@@ -18,15 +18,13 @@ interface Props {
 }
 
 export default function Cinema({ cinemasData }: Props) {
-  console.log("cinemasData", cinemasData)
   const { cinemas } = cinemasData?.data;
   const router = useRouter();
-  const date =CurrentDate()
+  const date = CurrentDate()
 
   const handleClick = (cinema: { id: string; name: string; cinemaLogoUrl: string }) => {
-    console.log("cinema", cinema);
     const { name, id } = cinema;
-    router.push(`/cinemas/c?cinema=${name}&cinemaId=${id}&date=${date}`);
+    router.push(`/cinemas/nellore/c?cinema=${name}&cinemaId=${id}&date=${date}`);
   };
 
   return (

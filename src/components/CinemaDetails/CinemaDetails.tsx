@@ -33,6 +33,10 @@ interface CinemaDetailsData {
     };
   };
   meta?: {
+    cinema:{
+      label: string
+      address:string
+    },
     movies?: {
       id: string;
       imgPath: string;
@@ -62,14 +66,13 @@ interface Props {
 
 export default function CinemaDetails({ cinemaDetailsData, context }: Props) {
   const { cinema, cinemaId, date } = context.searchParams;
-
+  console.log("cinemaDetailsData++", cinemaDetailsData)
   const [selectDate, setSelectDate] = useState<string>(date);
   const router = useRouter();
 
   const handleDateClick = (dateString: string) => {
-    router.replace(`/cinemas/c?cinema=${cinema}&cinemaId=${cinemaId}&date=${dateString}`);
+    router.replace(`/cinemas/nellore/c?cinema=${cinema}&cinemaId=${cinemaId}&date=${dateString}`);
     setSelectDate(dateString);
-    console.log("datestring", dateString);
   };
 
   const handleShowClick = (session: Session) => {
@@ -82,11 +85,15 @@ export default function CinemaDetails({ cinemaDetailsData, context }: Props) {
 
   return (
     <div className='mx-4 lg:mx-20'>
+      <div className='py-8 border-b'>
+            <p className='text-lg lg:text-3xl font-bold'>{cinemaDetailsData?.meta?.cinema.label}</p>
+            <p className='text-xs lg:text-base'>{cinemaDetailsData?.meta?.cinema.address}</p>
+      </div>
       <div className="flex gap-4 overflow-x-auto">
         {cinemaDetailsData?.data?.sessionDates?.map((dateString, idx) => (
           <div
             key={idx}
-            className={`border rounded-lg text-center  p-2 mt-4 cursor-pointer ${selectDate === dateString ? "bg-orange-100 text-white" : ""
+            className={`border rounded-lg text-center p-2 my-4 cursor-pointer ${selectDate === dateString ? "bg-orange-100 text-white" : ""
               }`}
             onClick={() => handleDateClick(dateString)}
           >
@@ -96,7 +103,7 @@ export default function CinemaDetails({ cinemaDetailsData, context }: Props) {
       </div>
       <div >
         {cinemaDetailsData?.meta?.movies?.map((movie) => (
-          <div key={movie.id} className='grid grid-cols-1 lg:grid lg:grid-cols-3 gap-4 py-8 border-b'>
+          <div key={movie.id} className='grid grid-cols-1 lg:grid lg:grid-cols-3 gap-4 py-8 border-t'>
             <div className='grid grid-cols-3 gap-2'>
               <div>
                 <img src={movie.imgPath} alt={movie.name} className='w-24	' />
@@ -117,7 +124,7 @@ export default function CinemaDetails({ cinemaDetailsData, context }: Props) {
                   <React.Fragment key={idx} >
                     {movie?.id === session?.mid && (
                       <div onClick={() => { handleShowClick(session) }}>
-                        <div className={`w-full text-center  border rounded-lg ${session.avail === 0 ? "text-gray-500" : session.avail > 50 ? "text-green-100" : "text-red-600"} text-green-100 hover:bg-orange-100 hover:text-white inline-block py-2`}>
+                        <div className={`w-full text-center  border rounded-lg ${session.avail === 0 ? "text-gray-500" : session.avail > 50 ? "text-green-100" : "text-red-600"} text-green-100 hover:bg-orange-100 hover:text-white inline-block py-2 cursor-pointer`}>
                           <p className='text-sm md:text-base font-semibold'>{convertToIST(session.showTime)}</p>
                           <p className='text-xs'>{session.audi}</p>
                         </div>

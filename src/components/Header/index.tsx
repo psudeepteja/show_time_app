@@ -16,7 +16,7 @@ export default function Header() {
         Show <FluentEmojiFlatPopcorn /> Time{" "}
       </div>
       <div className="flex gap-4 items-center text-black text-sm md:text-base">
-        <div onClick={() => router.push('/cinemas')} className="cursor-pointer">Cinemas</div>
+        <div onClick={() => router.push('/cinemas/nellore')} className="cursor-pointer">Cinemas</div>
         <div className="flex" onClick={()=> setIsOpen(true)}>
           <span className="pt-0.5 md:pt-1">
             {" "}
