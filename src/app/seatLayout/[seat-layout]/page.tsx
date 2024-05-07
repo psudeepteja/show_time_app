@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+import Loading from "@/app/loading";
 import SeactSelection from "@/components/SeatSelection/SeactSelection";
 import { endpoints } from "@/endpoint/endoint";
 import { postService } from "@/sevices/service";
@@ -30,7 +32,9 @@ export default async function SeatLayout(context: Context) {
 
   return (
     <div>
-      <SeactSelection seatSelectionData={seatSelectionRes} />
+      <Suspense fallback={<Loading />}>
+        <SeactSelection seatSelectionData={seatSelectionRes} />
+      </Suspense>
     </div>
   )
 }

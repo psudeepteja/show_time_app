@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import { useRouter } from "next/navigation";
+import { CurrentDate } from '@/utilits';
 
 interface CinemaData {
   data: {
@@ -17,13 +18,15 @@ interface Props {
 }
 
 export default function Cinema({ cinemasData }: Props) {
+  console.log("cinemasData", cinemasData)
   const { cinemas } = cinemasData?.data;
   const router = useRouter();
+  const date =CurrentDate()
 
   const handleClick = (cinema: { id: string; name: string; cinemaLogoUrl: string }) => {
     console.log("cinema", cinema);
     const { name, id } = cinema;
-    router.push(`/cinemas/c?cinema=${name}&cinemaId=${id}&date=2024-05-01`);
+    router.push(`/cinemas/c?cinema=${name}&cinemaId=${id}&date=${date}`);
   };
 
   return (

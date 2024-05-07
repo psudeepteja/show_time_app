@@ -1,5 +1,6 @@
 "use client";
 
+import { convertToIST, formatDate } from "@/utilits";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -9,27 +10,6 @@ export default function MovieDetail({ movieCodeData }) {
   const params = useParams();
   const { movies, fmtGrpId, specificDate } = params;
   const [selectDate, setSelectDate] = useState(specificDate);
-
-  // Function to convert timestamp to IST time (AM/PM format)
-  const convertToIST = (timestamp) => {
-    const date = new Date(timestamp);
-    const istOffset = 5.5 * 60 * 60 * 1000; // IST is UTC+5:30
-    const istTime = new Date(date.getTime() + istOffset);
-    const istTimeHours = istTime.getHours();
-    const istTimeMinutes = istTime.getMinutes().toString().padStart(2, "0"); // Get minutes and pad with leading zero if necessary
-    const period = istTimeHours >= 12 ? "PM" : "AM"; // Determine AM/PM
-    const formattedHours = istTimeHours % 12 || 12; // Convert hours to 12-hour format
-    return `${formattedHours}:${istTimeMinutes} ${period}`; // Return time portion in AM/PM format
-  };
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const monthAbbreviation = new Intl.DateTimeFormat("en-US", {
-      month: "short",
-    }).format(date);
-    const day = date.getDate();
-    return `${monthAbbreviation} ${day}`;
-  };
 
   const handleDateClick = (dateString) => {
     router.replace(`/${movies}/${fmtGrpId}/${dateString}`);
@@ -111,7 +91,7 @@ export default function MovieDetail({ movieCodeData }) {
                                 : "text-red-600"
                               } text-green-100 hover:bg-orange-100 hover:text-white inline-block px-2 py-2`}
                           >
-                            <div className="text-xs md:text-base font-semibold">
+                            <div className="text-sm md:text-base font-semibold">
                               {convertToIST(session.showTime)}
                             </div>
                             <div className="text-xs">{session.audi}</div>

@@ -50,6 +50,9 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ seatSelectionData }) => {
             setSelectedSeats([...selectedSeats, seat]);
         }
     };
+    if (!seatSelectionData) {
+        return <h1 className='text-center h-screen'>OOPS! Something went wrong, Please Try agin</h1>
+    }
 
     return (
         <div className='seat-selection-container'>
@@ -87,7 +90,7 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ seatSelectionData }) => {
                         </div>
                     ))}
                     <div className="mb-6 flex justify-center">
-                        <img src="https://assetscdn1.paytm.com/movies_new/_next/static/media/screen-icon.8dd7f126.svg" alt='screen' />
+                        <img src="https://assetscdn1.paytm.com/movies_new/_next/static/media/screen-icon.8dd7f126.svg" alt='screen' className='w-full' />
                     </div>
                 </div>
                 <div>

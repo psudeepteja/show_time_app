@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { Counter } from "../Counter/Counter";
 
 export default function Card({ nowShowingData }) {
 
@@ -24,7 +25,7 @@ export default function Card({ nowShowingData }) {
           <img
             src={item.imgPath}
             alt={item.label}
-            className=" sm:w-72 lg:w-72 sm:h-72 md:h-96 object-cover"
+            className="sm:w-72 lg:w-72 sm:h-72 md:h-96 object-cover"
           />
           <div className="p-4">
             <h6 className="text-sm lg:text-base font-semibold mb-2">{item.label}</h6>
@@ -38,6 +39,10 @@ export default function Card({ nowShowingData }) {
           </div>
         </div>
       ))}
+
+      <div> 
+        <Counter />
+      </div>
     </div>
   );
 }

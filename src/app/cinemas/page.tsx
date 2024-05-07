@@ -3,12 +3,11 @@ import { endpoints } from '@/endpoint/endoint';
 import { getService } from '@/sevices/service';
 
 export default async function Cinemas() {
-    const cinemasRes = await getService(endpoints.cinemas);
-    console.log("cinemasRes", cinemasRes)
+  const cinemasRes = await getService(endpoints.cinemas);
 
   return (
     <div>
-        <Cinema cinemasData={cinemasRes}/>
+      <Cinema cinemasData={cinemasRes} />
     </div>
   )
 }
