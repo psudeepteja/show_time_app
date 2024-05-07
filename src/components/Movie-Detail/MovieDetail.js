@@ -17,7 +17,6 @@ export default function MovieDetail({ movieCodeData, context }) {
   };
 
   const handleShowClick = (session) => {
-    console.log("session", session)
     const { fid, cid, sid, mid, pid, scrnFmt } = session
     const ffid = fid.toLowerCase()
     const mmid = mid.toLowerCase()

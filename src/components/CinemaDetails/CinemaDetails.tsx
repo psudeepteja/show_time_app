@@ -66,7 +66,6 @@ interface Props {
 
 export default function CinemaDetails({ cinemaDetailsData, context }: Props) {
   const { cinema, cinemaId, date } = context.searchParams;
-  console.log("cinemaDetailsData++", cinemaDetailsData)
   const [selectDate, setSelectDate] = useState<string>(date);
   const router = useRouter();
 
@@ -76,7 +75,6 @@ export default function CinemaDetails({ cinemaDetailsData, context }: Props) {
   };
 
   const handleShowClick = (session: Session) => {
-    console.log("session", session);
     const { fid, cid, sid, mid, pid, scrnFmt } = session;
     const ffid = fid.toLowerCase();
     const mmid = mid.toLowerCase();

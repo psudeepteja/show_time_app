@@ -7,12 +7,8 @@ import { Counter } from "../Counter/Counter";
 export default function Card({ nowShowingData }) {
 
   const router = useRouter()
-  console.log("nowShowingData", nowShowingData)
   const handleClick = (item) => {
-    console.log(item, "item")
-    // router.push(`/${item.label}/${item.languageFormatGroups[0].fmtGrpId}/${item.languageFormatGroups[0].screenFormats[0].nextAvailableDate}`)
     router.push(`/movies/nellore/${item.label}?frmtid=${item.languageFormatGroups[0].fmtGrpId}&date=${item.languageFormatGroups[0].screenFormats[0].nextAvailableDate}`)
-
   }
 
   return (
@@ -42,9 +38,9 @@ export default function Card({ nowShowingData }) {
         </div>
       ))}
 
-      <div> 
+      {/* <div> 
         <Counter />
-      </div>
+      </div> */}
     </div>
   );
 }
