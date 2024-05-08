@@ -2,6 +2,7 @@
 import React from 'react';
 import { useParams, useRouter } from "next/navigation";
 import { CurrentDate } from '@/utilits';
+import Image from 'next/image';
 
 interface CinemaData {
   data: {
@@ -38,7 +39,7 @@ export default function Cinema({ cinemasData }: Props) {
             className="flex gap-4 justify-start items-center border bg-white shadow-md rounded-md overflow-hidden cursor-pointer text-sm md:text-base"
             onClick={() => handleClick(cinema)}
           >
-            <img src={cinema.cinemaLogoUrl} alt={cinema.name} className='w-24	' />
+            <Image src={cinema.cinemaLogoUrl} alt={cinema.name} className='w-24	' width={600} height={0} />
             <div className='p-2'>
               <div className='m-2'>{cinema.name}</div>
               <button className='m-2 p-2 text-sm text-white rounded-lg bg-orange-100 '>View Shows</button>

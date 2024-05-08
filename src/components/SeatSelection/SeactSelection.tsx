@@ -1,4 +1,5 @@
 "use client"
+import Image from 'next/image';
 import React, { useState } from 'react';
 
 interface Seat {
@@ -90,7 +91,7 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ seatSelectionData }) => {
                         </div>
                     ))}
                     <div className="mb-6 flex justify-center">
-                        <img src="https://assetscdn1.paytm.com/movies_new/_next/static/media/screen-icon.8dd7f126.svg" alt='screen' className='w-full' />
+                        <Image src="https://assetscdn1.paytm.com/movies_new/_next/static/media/screen-icon.8dd7f126.svg" alt='screen' className='w-full' width={600} height={0} />
                     </div>
                 </div>
                 <div>

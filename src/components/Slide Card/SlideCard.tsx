@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import {CustomNextArrow, CustomPrevArrow} from '@/components/Slide Card/CustomSlideButtons'
+import Image from "next/image";
 
 interface MovieData {
   contentId: string;
@@ -62,7 +63,7 @@ const SwipeToSlide: React.FC<Props> = ({ upComingData }) => {
         {upComingData?.upcomingMovieData?.map((item: MovieData) => (
           <div className="p-4" key={item.contentId}>
             <div className="bg-white shadow-md rounded-md overflow-hidden lg:w-72 ">
-              <img src={item.moviePosterUrl} alt={item.movie_name} className="lg:w-72 h-96 object-cover" />
+              <Image src={item.moviePosterUrl} alt={item.movie_name} className="lg:w-72 h-96 object-cover" width={600} height={0} />
               <div className="p-4">
                 <h6 className="text-base font-semibold mb-2">{item.movie_name}</h6>
                 <p className="text-gray-700">{item.movieDescription}</p>

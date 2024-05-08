@@ -7,7 +7,6 @@ import SwipeToSlide from "@/components/Slide Card/SlideCard";
 import Loading from '../../loading';
 
 export default async function Home(context: { params: { city: any; }; }) {
-  console.log("conetext", context)
   const {city}= context.params
   const selectedCity = city ? city :"nellore"
   const payload={}
@@ -26,7 +25,7 @@ export default async function Home(context: { params: { city: any; }; }) {
       <Suspense fallback={ <Loading />}>
       <div className="my-4 mx-8 border-b">
         <h2 className="2xl:ml-28 my-8 text-xl font-bold border-l-8 border-orange-100 pl-2"> Now Showing </h2>
-        <Card nowShowingData={nowShowingRes.data} />
+        <Card nowShowingData={nowShowingRes?.data} />
       </div>
       </Suspense>
 

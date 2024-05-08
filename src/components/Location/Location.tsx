@@ -1,11 +1,14 @@
 import React, { useState, ChangeEvent } from "react";
 import Modal from "../Modal/Modal";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 const Location: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false); 
   const [city, setCity] = useState<string>("");
   const router = useRouter();
+  const params = useParams()
+  const loc: string  = String(params.city); 
+  const location:string = loc.charAt(0).toUpperCase() + loc.slice(1)
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -16,16 +19,15 @@ const Location: React.FC = () => {
   };
 
   const handleClick = () => {
-    console.log("city", city);
-    router.push(`/movies/${city}`);
+    router.push(`/movies/${city.toLowerCase()}`);
     setIsOpen(false);
     setCity("");
   };
 
   return (
     <div className="flex items-center justify-center">
-      <button className="" onClick={toggleModal}>
-        Nellore
+      <button  onClick={toggleModal}>
+        {location}
       </button>
       <Modal isOpen={isOpen} onClose={toggleModal}>
         <div className="flex gap-2">

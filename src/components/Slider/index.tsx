@@ -3,6 +3,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Image from 'next/image';
 
 interface Item {
   id: string;
@@ -39,7 +40,7 @@ export default function SimpleSlider({ sliderData }: Props) {
       <Slider {...settings}>
         {sliderData[0].views[0].items.map((item) => (
           // eslint-disable-next-line @next/next/no-img-element
-          <img key={item.id} src={item.image_url} alt={item.name}  />
+          <Image key={item.id} src={item.image_url} alt={item.name} width={600} height={0} />
         ))}
       </Slider>
     </div>

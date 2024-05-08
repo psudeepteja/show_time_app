@@ -1,6 +1,7 @@
 "use client";
 
 import { convertToIST, formatDate } from "@/utilits";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -32,7 +33,7 @@ export default function MovieDetail({ movieCodeData, context }) {
       {movieCodeData && movieCodeData?.meta?.movies?.map((movie) => (
         <div key={movie.id}>
           <div className="my-6">
-            <img src={movie.cvrPath} alt={movie.name} />
+            <Image src={movie.cvrPath} alt={movie.name} width={600} height={0}/>
           </div>
           <div className="border-b pb-4">
             <h2 className="text-2xl sm:text-3xl px-2 py-2">
