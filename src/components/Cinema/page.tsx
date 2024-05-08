@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { CurrentDate } from '@/utilits';
 
 interface CinemaData {
@@ -20,11 +20,13 @@ interface Props {
 export default function Cinema({ cinemasData }: Props) {
   const { cinemas } = cinemasData?.data;
   const router = useRouter();
+  const params = useParams()
+  const {city} = params
   const date = CurrentDate()
 
   const handleClick = (cinema: { id: string; name: string; cinemaLogoUrl: string }) => {
     const { name, id } = cinema;
-    router.push(`/cinemas/nellore/c?cinema=${name}&cinemaId=${id}&date=${date}`);
+    router.push(`/cinemas/${city}/c?cinema=${name}&cinemaId=${id}&date=${date}`);
   };
 
   return (
@@ -36,7 +38,7 @@ export default function Cinema({ cinemasData }: Props) {
             className="flex gap-4 justify-start items-center border bg-white shadow-md rounded-md overflow-hidden cursor-pointer text-sm md:text-base"
             onClick={() => handleClick(cinema)}
           >
-            <img src={cinema.cinemaLogoUrl} alt={cinema.name} />
+            <img src={cinema.cinemaLogoUrl} alt={cinema.name} className='w-24	' />
             <div className='p-2'>
               <div className='m-2'>{cinema.name}</div>
               <button className='m-2 p-2 text-sm text-white rounded-lg bg-orange-100 '>View Shows</button>

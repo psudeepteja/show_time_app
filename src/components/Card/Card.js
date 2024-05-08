@@ -1,14 +1,15 @@
 "use client"
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React from "react";
 import { Counter } from "../Counter/Counter";
 
 export default function Card({ nowShowingData }) {
-
+  const params = useParams()
+  const {city} = params
   const router = useRouter()
   const handleClick = (item) => {
-    router.push(`/movies/nellore/${item.label}?frmtid=${item.languageFormatGroups[0].fmtGrpId}&date=${item.languageFormatGroups[0].screenFormats[0].nextAvailableDate}`)
+    router.push(`/movies/${city}/${item.label}?frmtid=${item.languageFormatGroups[0].fmtGrpId}&date=${item.languageFormatGroups[0].screenFormats[0].nextAvailableDate}`)
   }
 
   return (
@@ -27,7 +28,6 @@ export default function Card({ nowShowingData }) {
           />
           <div className="p-4">
             <h6 className="text-sm lg:text-base font-semibold mb-2">{item.label}</h6>
-
             <div className="text-xs flex gap-4">
               <span>{item.censor}</span>
               {item.languageFormatGroups?.map((i, idx) => (

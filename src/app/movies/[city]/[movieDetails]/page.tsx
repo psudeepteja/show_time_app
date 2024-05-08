@@ -9,11 +9,15 @@ interface Context {
     frmtid: any;
     date: any;
   };
+  params: {
+    city: string
+  }
 }
 
 export default async function Movies(context: Context) {
   const { frmtid, date } = context.searchParams
-  const movieCodeRes = await getService(endpoints.movieCode + `movieCode=${frmtid}&date=${date}&version=3&site_id=6&channel=web&child_site_id=370`);
+  const { city } = context.params
+  const movieCodeRes = await getService(endpoints.movieCode + `city=${city}&movieCode=${frmtid}&date=${date}&version=3&site_id=6&channel=web&child_site_id=370`);
 
   return (
     <div>

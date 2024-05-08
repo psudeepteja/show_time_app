@@ -6,11 +6,14 @@ import Card from "@/components/Card/Card";
 import SwipeToSlide from "@/components/Slide Card/SlideCard";
 import Loading from '../../loading';
 
-export default async function Home() {
+export default async function Home(context: { params: { city: any; }; }) {
+  console.log("conetext", context)
+  const {city}= context.params
+  const selectedCity = city ? city :"nellore"
   const payload={}
   const sliderRes = await postService(endpoints.slider, payload);
-  const nowShowingRes = await getService(endpoints.nowShowing);
-  const upComingRes = await getService(endpoints.upComing);
+  const nowShowingRes = await getService(endpoints.nowShowing +`city=${selectedCity}&mdp=1`);
+  const upComingRes = await getService(endpoints.upComing + `?city=${selectedCity}&version=3&site_id=6&channel=HTML5&child_site_id=370`);
 
   return (
     <div>
