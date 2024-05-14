@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, ChangeEvent } from "react";
 import Modal from "../Modal/Modal";
 import { useParams, useRouter } from "next/navigation";
