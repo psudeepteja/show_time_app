@@ -96,7 +96,7 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ seatSelectionData }) => {
                                                             selectedSeat.gridRowId === row.GridRowId &&
                                                             selectedSeat.GridSeatNum === seat.GridSeatNum
                                                     ) && seat.SeatStatus === '0'
-                                                        ? 'bg-orange-500 text-white'
+                                                        ? 'bg-green-600 text-white'
                                                         : seat.SeatStatus === '1'
                                                             ? 'bg-red-500 text-white cursor-not-allowed'
                                                             : 'bg-gray-200 text-gray-700 cursor-pointer'
