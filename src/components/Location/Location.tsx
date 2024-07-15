@@ -31,6 +31,14 @@ const Location: React.FC = () => {
         {location}
       </button>
       <Modal isOpen={isOpen} onClose={toggleModal}>
+      <div className="flex justify-end">
+          <button
+            className="text-gray-500 hover:text-gray-700 pb-4 md:pb-2"
+            onClick={toggleModal}
+          >
+            Close
+          </button>
+        </div>
         <div className="flex gap-2">
           <input
             type="text"
