@@ -40,7 +40,7 @@ export default function SimpleSlider({ sliderData }: Props) {
       <Slider {...settings}>
         {sliderData[0].views[0].items.map((item) => (
           // eslint-disable-next-line @next/next/no-img-element
-          <Image key={item.id} src={item.image_url} alt={item.name} width={600} height={0} />
+          <Image key={item.id} src={item.image_url} alt={item.name} width={600} height={0} loading = 'lazy' />
         ))}
       </Slider>
     </div>

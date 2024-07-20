@@ -27,6 +27,7 @@ export default function Card({ nowShowingData }) {
             className="sm:w-72 lg:w-72 sm:h-72 md:h-96 object-cover"
             width={600}
             height={0}
+            loading = 'lazy' 
           />
           <div className="p-4">
             <h6 className="text-sm lg:text-base font-semibold mb-2">{item.label}</h6>
