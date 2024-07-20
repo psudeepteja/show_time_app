@@ -14,7 +14,6 @@ interface MovieData {
   language: string;
   genre: [];
   releaseDate: string;
-
 }
 
 interface UpcomingData {

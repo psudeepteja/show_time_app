@@ -17,11 +17,11 @@ export default async function Home(context: { params: { city: any; }; }) {
   return (
     <div>
       <Suspense fallback={ <Loading />}>
-      <div className="my-4 border-b">
+      <div className="my-4">
         <SimpleSlider sliderData={sliderRes?.page} />
       </div>
       
-      <div className="my-4 mx-8 border-b">
+      <div className="my-4 mx-8">
         <h2 className="2xl:ml-28 my-8 text-xl font-bold border-l-8 border-orange-100 pl-2"> Now Showing </h2>
         <Card nowShowingData={nowShowingRes?.data} />
       </div>
