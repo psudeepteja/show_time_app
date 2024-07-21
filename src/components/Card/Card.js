@@ -2,27 +2,47 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
+import Modal from "../Modal/Modal";
 
 export default function Card({ nowShowingData }) {
-  console.log("nowShowingData", nowShowingData)
   const params = useParams()
   const { city } = params
   const router = useRouter()
-
-  const [moviesLength, setMoviesLength] = useState(8)
+  const intialMovieslemgth = 8
+  const [isOpen, setIsOpen] = useState(false);
+  const [moviesLength, setMoviesLength] = useState(intialMovieslemgth)
+  const [langData, setLangData] = useState([])
+  const [langInfo, setLangInfo] = useState()
   const moviesData = nowShowingData?.groupedMovies.slice(0, moviesLength)
 
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
+
   const handleClick = (item) => {
-    router.push(`/movies/${city}/${item.label}?frmtid=${item.languageFormatGroups[0].fmtGrpId}&date=${item.languageFormatGroups[0].screenFormats[0].nextAvailableDate}`)
+    console.log(item, "item")
+    const { label, languageFormatGroups } = item
+    console.log(languageFormatGroups, "languageFormatGroups")
+
+    setLangData({ label, languageFormatGroups })
+    if (languageFormatGroups.length > 1) {
+      toggleModal()
+      setLangInfo(languageFormatGroups[0])
+    } else {
+      router.push(`/movies/${city}/${label}?frmtid=${languageFormatGroups[0].fmtGrpId}&date=${languageFormatGroups[0].screenFormats[0].nextAvailableDate}`)
+    }
   }
 
   const handleViewMore = () => {
     setMoviesLength(nowShowingData?.groupedMovies.length)
   }
-  console.log("nowShowingData?.groupedMovies.length", nowShowingData?.groupedMovies.length)
-  console.log("moviesData.length", moviesData.length)
-
-  
+  const handleLangChange = (info) => {
+    setLangInfo(info)
+  }
+  const handleLangClick = () => {
+    toggleModal()
+    router.push(`/movies/${city}/${langData.label}?frmtid=${langInfo.fmtGrpId}&date=${langInfo.screenFormats[0].nextAvailableDate}`)
+  }
 
   return (
     <>
@@ -53,15 +73,31 @@ export default function Card({ nowShowingData }) {
             </div>
           </div>
         ))}
-        {/* <div> 
-        <Counter />
-      </div> */}
       </div>
+
+      {langData?.languageFormatGroups?.length > 1 && (
+        <Modal isOpen={isOpen} onClose={toggleModal}>
+          <p
+            className="text-gray-500 hover:text-gray-700 pb-4 md:pb-2 text-right cursor-pointer"
+            onClick={toggleModal}
+          >
+            Close
+          </p>
+          {langData.languageFormatGroups.map((i, idx) => (
+            <div key={idx} className="flex">
+              <input type="radio" id="lang" name="lang" value={i.lang} onChange={() => handleLangChange(i)} checked={langInfo.lang === i.lang} />
+              <p>{i.lang}</p>
+            </div>
+          ))}
+          <p className="bg-orange-100 px-4 py-2 text-white font-semibold text-center" onClick={handleLangClick}>Proceed</p>
+        </Modal>
+      )}
+      
       <div className="flex justify-center mt-6">
-     {moviesData.length < nowShowingData?.groupedMovies.length &&(
-     <div className="px-6 py-2 border rounded-xl shadow-lg text-orange-100 font-semibold cursor-pointer text-xs " onClick={handleViewMore}>View All</div>
-     )} 
-     </div>
+        {moviesData.length < nowShowingData?.groupedMovies.length && (
+          <div className="px-6 py-2 border rounded-xl shadow-lg text-orange-100 font-semibold cursor-pointer text-xs " onClick={handleViewMore}>View All</div>
+        )}
+      </div>
     </>
   );
 }
