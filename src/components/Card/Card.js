@@ -22,7 +22,6 @@ export default function Card({ nowShowingData }) {
   const handleClick = (item) => {
     console.log(item, "item")
     const { label, languageFormatGroups } = item
-    console.log(languageFormatGroups, "languageFormatGroups")
 
     setLangData({ label, languageFormatGroups })
     if (languageFormatGroups.length > 1) {
@@ -60,8 +59,6 @@ export default function Card({ nowShowingData }) {
               className="sm:w-72 lg:w-72 sm:h-72 md:h-96 object-cover"
               width={600}
               height={0}
-              loading='lazy'
-              priority={true}
             />
             <div className="p-4">
               <h6 className="text-sm lg:text-base font-semibold mb-2">{item.label}</h6>
