@@ -57,8 +57,8 @@ export default function Card({ nowShowingData }) {
               src={item.imgPath}
               alt={item.label}
               // className="sm:w-72 lg:w-72 sm:h-72 md:h-96 object-cover"
-              width={500}
-              height={0}
+              width={300}
+              height={400}
               // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority={true} 
             />
