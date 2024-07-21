@@ -59,7 +59,7 @@ export default function Card({ nowShowingData }) {
               // className="sm:w-72 lg:w-72 sm:h-72 md:h-96 object-cover"
               width={300}
               height={400}
-              // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority={true} 
             />
             <div className="p-4">
