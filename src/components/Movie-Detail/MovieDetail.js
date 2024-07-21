@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function MovieDetail({ movieCodeData, context }) {
+  console.log("context", context)
+
   const router = useRouter();
   const { frmtid, date } = context?.searchParams
   const { movieDetails, city } = context?.params
@@ -20,7 +22,7 @@ export default function MovieDetail({ movieCodeData, context }) {
     const { fid, cid, sid, mid, pid, scrnFmt } = session
     const ffid = fid.toLowerCase()
     const mmid = mid.toLowerCase()
-    router.push(`/seatLayout/${ffid}.json?cid=${cid}&sid=${sid}&mid=${mmid}&pid=${pid}&scrnfmt=${scrnFmt}&freeseating=false&fromsessions=true&cityname=nellore&frmtid=${ffid}`)
+    router.push(`/seatLayout/${city}/${ffid}.json?cid=${cid}&sid=${sid}&mid=${mmid}&pid=${pid}&scrnfmt=${scrnFmt}&freeseating=false&fromsessions=true&cityname=nellore&frmtid=${ffid}`)
   }
 
   if (!movieCodeData) {
@@ -120,8 +122,6 @@ export default function MovieDetail({ movieCodeData, context }) {
           </div>
         ))}
       </div>
-      {/* </div>
-      ))} */}
     </div>
   );
 }

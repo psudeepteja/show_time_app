@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
-import Loading from "@/app/loading";
-import SeactSelection from "@/components/SeatSelection/SeactSelection";
-import { endpoints } from "@/endpoint/endoint";
-import { postService } from "@/sevices/service";
+import Loading from "../../../loading";
+import SeactSelection from "../../../../components/SeatSelection/SeactSelection";
+import { endpoints } from "../../../../endpoint/endoint";
+import { postService } from "../../../../sevices/service";
 
 interface Context {
   searchParams: {

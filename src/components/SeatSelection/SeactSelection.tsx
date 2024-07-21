@@ -37,6 +37,7 @@ interface SeatSelectionProps {
 }
 
 const SeatSelection: React.FC<SeatSelectionProps> = ({ seatSelectionData }) => {
+    console.log("seatSelectionData", seatSelectionData)
     const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
 
     const handleSeatClick = (gridRowId: string, PhyRowId: string, GridSeatNum: number | string) => {

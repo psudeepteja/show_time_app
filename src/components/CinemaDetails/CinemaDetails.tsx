@@ -58,6 +58,9 @@ interface Context {
     cinemaId: string;
     date: string;
   };
+  params: {
+    city: string
+  }
 }
 
 interface Props {
@@ -66,7 +69,10 @@ interface Props {
 }
 
 export default function CinemaDetails({ cinemaDetailsData, context }: Props) {
+  console.log("context", context)
   const { cinema, cinemaId, date } = context.searchParams;
+  const { city } = context.params;
+
   const [selectDate, setSelectDate] = useState<string>(date);
   const router = useRouter();
 
@@ -79,7 +85,7 @@ export default function CinemaDetails({ cinemaDetailsData, context }: Props) {
     const { fid, cid, sid, mid, pid, scrnFmt } = session;
     const ffid = fid.toLowerCase();
     const mmid = mid.toLowerCase();
-    router.push(`/seatLayout/${ffid}.json?cid=${cid}&sid=${sid}&mid=${mmid}&pid=${pid}&scrnfmt=${scrnFmt}&freeseating=false&fromsessions=true&cityname=nellore&frmtid=${ffid}`);
+    router.push(`/seatLayout/${city}/${ffid}.json?cid=${cid}&sid=${sid}&mid=${mmid}&pid=${pid}&scrnfmt=${scrnFmt}&freeseating=false&fromsessions=true&cityname=nellore&frmtid=${ffid}`);
   };
 
   return (
