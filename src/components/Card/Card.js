@@ -61,6 +61,7 @@ export default function Card({ nowShowingData }) {
               width={600}
               height={0}
               loading='lazy'
+              priority={true}
             />
             <div className="p-4">
               <h6 className="text-sm lg:text-base font-semibold mb-2">{item.label}</h6>
