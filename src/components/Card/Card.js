@@ -56,11 +56,10 @@ export default function Card({ nowShowingData }) {
             <Image
               src={item.imgPath}
               alt={item.label}
-              // className="sm:w-72 lg:w-72 sm:h-72 md:h-96 object-cover"
+              className="sm:w-72 lg:w-72 sm:h-72 md:h-96 object-cover"
               width={300}
-              height={400}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              priority={true} 
+              height={0}
+              // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
             <div className="p-4">
               <h6 className="text-sm lg:text-base font-semibold mb-2">{item.label}</h6>
