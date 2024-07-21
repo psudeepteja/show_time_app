@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import Modal from "../Modal/Modal";
 
@@ -63,14 +63,15 @@ export default function Card({ nowShowingData }) {
                 {item.bookingStatus}
               </p>
             )}
-            <div className="relative w-full h-0 pb-[133.33%]"> {/* Aspect ratio 4:3 */}
-              <Image
+            <div className="relative w-full"> {/* Aspect ratio 4:3 */}
+              <img
                 src={item.imgPath}
                 alt={item.label}
-                fill={true}
-                style={{ objectFit: "cover" }} // Use style instead of objectFit
-                className="rounded-t-xl"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
+                loading="lazy"
+                // fill={true}
+                // style={{ objectFit: "cover" }}
+                // className="rounded-t-xl"
+                // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
               />
             </div>
             <div className="p-4">
