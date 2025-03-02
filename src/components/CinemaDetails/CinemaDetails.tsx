@@ -111,7 +111,7 @@ export default function CinemaDetails({ cinemaDetailsData, context }: Props) {
           <div key={movie.id} className='grid grid-cols-1 lg:grid lg:grid-cols-3 gap-4 py-8 border-t'>
             <div className='grid grid-cols-3 gap-2'>
               <div>
-                <Image src={movie.imgPath} alt={movie.name} className='w-24	' width={600} height={0} />
+                <img src={movie.imgPath} alt={movie.name} className='w-24	' />
               </div>
               <div className='col-span-2'>
                 <h3 className='font-lg font-semibold'> {movie.name}</h3>

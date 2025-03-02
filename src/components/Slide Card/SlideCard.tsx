@@ -71,7 +71,7 @@ const SwipeToSlide: React.FC<Props> = ({ upComingData }) => {
         {upComingData?.upcomingMovieData?.slice(0, 4).map((item: MovieData) => (
           <div className="p-4" key={item.contentId}>
             <div className="bg-white shadow-md rounded-md overflow-hidden lg:w-72 ">
-              <Image src={item.moviePosterUrl} alt={item.movie_name} className="lg:w-72 h-96 object-cover" width={600} height={0} loading='lazy' />
+              <img src={item.moviePosterUrl} alt={item.movie_name} className="lg:w-72 h-96 object-cover" loading='lazy' />
               <div className="p-4">
                 <h6 className="text-base font-bold mb-2">{item.movie_name}</h6>
                 <p className="text-sm">{item.language}</p>

@@ -115,7 +115,7 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ seatSelectionData }) => {
                 </div>
             </div>
             <div className="mb-6 flex justify-center">
-                <Image src="https://assetscdn1.paytm.com/movies_new/_next/static/media/screen-icon.8dd7f126.svg" alt='screen' className='w-full' width={600} height={0} />
+                <img src="https://assetscdn1.paytm.com/movies_new/_next/static/media/screen-icon.8dd7f126.svg" alt='screen' className='w-full' />
             </div>
             <div>
                 <h3 className="text-lg font-bold">Selected Seats:</h3>

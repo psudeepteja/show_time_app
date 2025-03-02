@@ -62,7 +62,7 @@ export default function Cinema({ cinemasData }: Props) {
               onClick={() => handleClick(cinema)}
             >
               <div className='col-span-1'>
-                <Image src={cinema.cinemaLogoUrl} alt={cinema.name} className='w-24	' width={600} height={0} />
+                <img src={cinema.cinemaLogoUrl} alt={cinema.name} className='w-24	' />
               </div>
               <div className='col-span-3 p-2'>
                 <div className='m-2 truncate '>{cinema.name}</div>
