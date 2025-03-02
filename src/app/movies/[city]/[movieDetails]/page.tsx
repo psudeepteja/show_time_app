@@ -15,8 +15,8 @@ interface Context {
 }
 
 export default async function Movies(context: Context) {
-  const { frmtid, date } = context.searchParams
-  const { city } = context.params
+  const { frmtid, date } = context?.searchParams
+  const { city } = context?.params
   const movieCodeRes = await getService(endpoints.movieCode + `city=${city}&movieCode=${frmtid}&date=${date}&version=3&site_id=6&channel=web&child_site_id=370`);
 
   return (

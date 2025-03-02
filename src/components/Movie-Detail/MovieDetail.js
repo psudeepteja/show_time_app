@@ -25,31 +25,25 @@ export default function MovieDetail({ movieCodeData, context }) {
     router.push(`/seatLayout/${city}/${ffid}.json?cid=${cid}&sid=${sid}&mid=${mmid}&pid=${pid}&scrnfmt=${scrnFmt}&freeseating=false&fromsessions=true&cityname=nellore&frmtid=${ffid}`)
   }
 
-  if (!movieCodeData) {
-    return <h1>OOPS, Currently no shows available</h1>
-  }
+  // if (!movieCodeData) {
+  //   return <h1>OOPS, Currently no shows available</h1>
+  // }
   console.log("movieCodeData", movieCodeData)
   const movieData = movieCodeData?.meta?.movies[0]
   return (
     <div className="mx-8 2xl:mx-16">
       {/* {movieCodeData?.meta?.movies?.map((movie) => ( */}
       {/* <div key={movie.id}> */}
-      <div className="my-6">
-        <Image src={movieData.cvrPath} alt={movieData.name} width={600} height={10} />
-      </div>
-      <div className="border-b pb-4">
-        <h2 className="text-2xl sm:text-3xl px-2 py-2">
-          {movieData.name} - {movieData.lang}
+      <div className="flex justify-between items-center">
+      <div className="pb-4 px-4">
+        <h2 className="text-2xl sm:text-3xl py-2">
+          {movieData?.name}
         </h2>
-        <div className="flex gap-4 px-4">
-          <span>{movieData.censor}</span>
-          <span>{movieData.duration}m</span>
-          <div className="flex gap-2">
-            {movieData?.grn?.map((genre, index) => (
-              <span key={index}>{genre}</span>
-            ))}
-          </div>
-          <span className="flex gap-2">{movieCodeData?.meta?.movies.map((i, index) => (
+        <div className="flex gap-4 py-1">
+          <span>{movieData?.censor}</span>
+          <span>{movieData?.duration}m</span>
+          
+          <span className="flex gap-2">{movieCodeData?.meta?.movies?.map((i, index) => (
             <span key={index}>
               {i.scrnFmt}
             </span>
@@ -57,11 +51,28 @@ export default function MovieDetail({ movieCodeData, context }) {
 
           </span>
         </div>
+        <div className="flex gap-2 py-1">
+            {movieData?.grn?.map((genre, index) => (
+              <span key={index}>{genre}</span>
+            ))}
+          </div>
+          <div className="flex gap-2 py-1">
+            {movieData?.lang}
+          </div>
+          <div className="flex gap-2 py-1">
+            {/* {movieData?.trailer} */}
+            <button className="border rounded-2xl px-4 py-1 bg-blue-400 text-white font-bold">Watch Trailer</button>
+          </div>
       </div>
+      <div className="mt-6 ">
+        <img src={movieData?.appImgPath ? movieData?.appImgPath :  movieData?.cvrPath} alt={movieData?.name} className="max-w-48 max-h-48 border rounded-2xl" />
+      </div>
+      </div>
+      
       {/* </div> */}
       {/* ))} */}
       <div className="flex gap-4 overflow-x-auto">
-        {movieCodeData.data.sessionDates.map((dateString, idx) => (
+        {movieCodeData?.data?.sessionDates?.map((dateString, idx) => (
           <div
             key={idx}
             className={`border rounded-lg text-center  p-2 mt-4 cursor-pointer ${selectDate === dateString ? "bg-orange-100 text-white" : ""
@@ -77,14 +88,14 @@ export default function MovieDetail({ movieCodeData, context }) {
           <div key={cinemaId} className="mt-4">
             <h4 className="text-lg font-medium">
               {
-                movieCodeData.meta.cinemas.find(
+                movieCodeData?.meta?.cinemas.find(
                   (cinema) => cinema.id === cinemaId
                 ).name
               }
             </h4>
             <div className="grid gap-4 grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-8 justify-center items-center">
-              {movieCodeData.pageData.sessions[cinemaId] &&
-                movieCodeData.pageData.sessions[cinemaId]
+              {movieCodeData?.pageData?.sessions[cinemaId] &&
+                movieCodeData?.pageData?.sessions[cinemaId]
                   .sort(
                     (a, b) => new Date(a.showTime) - new Date(b.showTime)
                   )

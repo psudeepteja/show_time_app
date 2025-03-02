@@ -11,7 +11,7 @@ interface Context {
   };
 }
 
-export default async function Cinemas(context: Context) {
+export default async function Cinemas(context: any) {
   const { cinemaId, date } = context?.searchParams
   const cinemaDetailsRes = await getService(endpoints.cinema + `cinemaId=${cinemaId}&date=${date}`);
 

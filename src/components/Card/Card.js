@@ -24,7 +24,7 @@ export default function Card({ nowShowingData }) {
     const { label, languageFormatGroups } = item;
 
     setLangData({ label, languageFormatGroups });
-    if (languageFormatGroups.length > 1) {
+    if (languageFormatGroups?.length > 1) {
       toggleModal();
       setLangInfo(languageFormatGroups[0]);
     } else {
@@ -35,7 +35,7 @@ export default function Card({ nowShowingData }) {
   };
 
   const handleViewMore = () => {
-    setMoviesLength(nowShowingData?.groupedMovies.length);
+    setMoviesLength(nowShowingData?.groupedMovies?.length);
   };
 
   const handleLangChange = (info) => {
@@ -49,23 +49,25 @@ export default function Card({ nowShowingData }) {
     );
   };
 
+  console.log("moviesData", moviesData)
+
   return (
     <>
       <div className="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 2xl:mx-28">
         {moviesData?.map((item) => (
           <div
-            key={item.contentId}
+            key={item?.contentId}
             className="bg-white shadow-md rounded-xl overflow-hidden cursor-pointer relative"
             onClick={() => handleClick(item)}
           >
-            {item.bookingStatus && (
+            {item?.bookingStatus && (
               <p className="absolute top-2 right-2 bg-green-200 text-white rounded-md text-xs md:text-base font-semibold px-2 py-0.5">
                 {item.bookingStatus}
               </p>
             )}
             <div className="relative w-full"> {/* Aspect ratio 4:3 */}
               <img
-                src={item.imgPath}
+                src={item?.appImgPath ? item?.appImgPath :item?.imgPath}
                 alt={item.label}
                 loading="lazy"
                 // fill={true}
