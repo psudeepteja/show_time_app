@@ -52,16 +52,17 @@ export default function MovieDetail({ movieCodeData, context }) {
           </span>
         </div>
         <div className="flex gap-2 py-1">
-            {movieData?.grn?.map((genre, index) => (
+            {/* {movieData?.grn?.map((genre, index) => (
               <span key={index}>{genre}</span>
-            ))}
+            ))} */}
+            {movieData?.grn[0]} {movieData?.grn[1]}
           </div>
           <div className="flex gap-2 py-1">
             {movieData?.lang}
           </div>
           <div className="flex gap-2 py-1">
             {/* {movieData?.trailer} */}
-            <button className="border rounded-2xl px-4 py-1 bg-blue-400 text-white font-bold">Watch Trailer</button>
+            <button className="border rounded-2xl px-4 py-1 bg-blue-400 text-white font-bold text-sm md:text-base	"><a href={movieData.trailer} target="_blank">Watch Trailer</a></button>
           </div>
       </div>
       <div className="mt-6 ">

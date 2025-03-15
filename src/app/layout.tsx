@@ -22,22 +22,22 @@ export default async function RootLayout({
   const getCitiesRes = await getService(api_url);
   console.log("getCitiesRes", getCitiesRes)
 
-  
+
   return (
     <Providers>
-    <html lang="en">
-      <body className={inter.className}>
-        <div className="container mx-auto">
-          <HeaderComponent 
-          // getCitiesRes={getCitiesRes}
-           />
-          {children}
-          <Footer 
-          // getCitiesRes={getCitiesRes} 
-          />
-        </div>
-      </body>
-    </html>
+      <html lang="en">
+        <body className={inter.className}>
+          <div className="container mx-auto">
+            <HeaderComponent
+            // getCitiesRes={getCitiesRes}
+            />
+            {children}
+            <Footer
+            // getCitiesRes={getCitiesRes} 
+            />
+          </div>
+        </body>
+      </html>
     </Providers>
   );
 }
